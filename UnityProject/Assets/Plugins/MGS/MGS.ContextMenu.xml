@@ -1,0 +1,387 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MGS.ContextMenu</name>
+    </assembly>
+    <members>
+        <member name="T:MGS.ContextMenu.ContextMenuObject">
+            <summary>
+            Context menu support object.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuObject.OnMenuItemClick(System.String)">
+            <summary>
+            On context menu item click.
+            </summary>
+            <param name="tag">Tag of menu item.</param>
+        </member>
+        <member name="T:MGS.ContextMenu.ContextMenuTriggerHandler">
+            <summary>
+            Handler of contex menu trigger.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuTriggerHandler.currentMenuForm">
+            <summary>
+            Current menu form.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuTriggerHandler.OnMenuTriggerEnter(UnityEngine.RaycastHit)">
+            <summary>
+            On context menu trigger enter.
+            </summary>
+            <param name="hitInfo">Raycast hit info of target.</param>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuTriggerHandler.OnMenuTriggerExit">
+            <summary>
+            On context menu trigger exit.
+            </summary>
+        </member>
+        <member name="T:MGS.ContextMenu.ContextMenuItem">
+            <summary>
+            Item of context menu.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuItem.itemText">
+            <summary>
+            Text component of menu item.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuItem.itemTag">
+            <summary>
+            Tag of menu item.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuItem.button">
+            <summary>
+            Button of menu item.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.ContextMenuItem.Tag">
+            <summary>
+            Tag of menu item.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.ContextMenuItem.Interactable">
+            <summary>
+            Menu item is interactable?
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.ContextMenuItem.OnClick">
+            <summary>
+            Event on menu item click.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuItem.Initialize">
+            <summary>
+            Initialize menu item.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuItem.OnButtonClick">
+            <summary>
+            On menu item button click.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuItem.Refresh(System.Object)">
+            <summary>
+            Refresh menu item.
+            </summary>
+            <param name="data">Data of context menu item, type is ContextMenuItemData.</param>
+        </member>
+        <member name="T:MGS.ContextMenu.ContextMenuForm">
+            <summary>
+            Context menu form.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuForm.margin">
+            <summary>
+            Margin of menu form base on screen.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuForm.itemPrefab">
+            <summary>
+            Prefab of menu item to create clone.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuForm.separatorPrefab">
+            <summary>
+            Prefab of menu separator to create clone.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.ContextMenuForm.Margin">
+            <summary>
+            Margin of menu form base on screen.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.ContextMenuForm.Handler">
+            <summary>
+            Handler of contex menu form.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuForm.items">
+            <summary>
+            List of context menu items.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuForm.Initialize">
+            <summary>
+            Initialize menu form.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuForm.OnItemClick(System.String)">
+            <summary>
+            On menu item click.
+            </summary>
+            <param name="tag">Tag of menu item.</param>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuForm.RefreshItems(System.Collections.Generic.ICollection{MGS.ContextMenu.ContextMenuItemData})">
+            <summary>
+            Refresh items of menu base on item datas.
+            </summary>
+            <param name="itemDatas">Data of menu items.</param>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuForm.EnableItems">
+            <summary>
+            Enable all menu items.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuForm.DisableItems(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Disable menu items by tags.
+            </summary>
+            <param name="tags">Tags of menu items.</param>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuForm.SetFormPosition(UnityEngine.Vector2)">
+            <summary>
+            Set menu form position.
+            </summary>
+            <param name="screenPos">Target screen position of menu form.</param>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuForm.Refresh(System.Object)">
+            <summary>
+            Refresh context menu form.
+            </summary>
+            <param name="data">Data for context menu form, type is Vector2 or Vector3 or ContextMenuFormInfo or ContextMenuFormData.</param>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuForm.Close(System.Boolean)">
+            <summary>
+            Close context menu form.
+            </summary>
+            <param name="dispose">Dispose form on close?</param>
+        </member>
+        <member name="T:MGS.ContextMenu.ContextMenuFormInfo">
+            <summary>
+            Info of contex menu form.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuFormInfo.position">
+            <summary>
+            Screen position to display menu form.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuFormInfo.disables">
+            <summary>
+            Tags of disable menu items.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuFormInfo.#ctor(UnityEngine.Vector2,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="position">Screen position to display menu form.</param>
+            <param name="disables">Tags of disable menu items.</param>
+        </member>
+        <member name="T:MGS.ContextMenu.ContextMenuFormData">
+            <summary>
+            Data of contex menu form.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuFormData.position">
+            <summary>
+            Screen position to display menu form.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuFormData.items">
+            <summary>
+            Data of menu items.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuFormData.#ctor(UnityEngine.Vector2,System.Collections.Generic.ICollection{MGS.ContextMenu.ContextMenuItemData})">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="position">Screen position to display menu form.</param>
+            <param name="items">Data of menu items.</param>
+        </member>
+        <member name="T:MGS.ContextMenu.ContextMenuItemData">
+            <summary>
+            Data of context menu item.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuItemData.name">
+            <summary>
+            Name of menu item.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuItemData.tag">
+            <summary>
+            Tag of menu item.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuItemData.interactable">
+            <summary>
+            Menu item is interactable?
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuItemData.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="name">Name of menu item.</param>
+            <param name="tag">Tag of menu item.</param>
+            <param name="interactable">Menu item is interactable?</param>
+        </member>
+        <member name="T:MGS.ContextMenu.ContextMenuTrigger">
+            <summary>
+            Trigger of context menu.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuTrigger.layerMask">
+            <summary>
+            LayerMask of raycast.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuTrigger.maxDistance">
+            <summary>
+            Max distance of raycast.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuTrigger.handler">
+            <summary>
+            Handler of contex menu trigger.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.ContextMenuTrigger.RayCamera">
+            <summary>
+            Camera to raycast.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.ContextMenuTrigger.LayerMask">
+            <summary>
+            LayerMask of raycast.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.ContextMenuTrigger.MaxDistance">
+            <summary>
+            Max distance of raycast.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.ContextMenuTrigger.Handler">
+            <summary>
+            Handler of contex menu trigger.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuTrigger.SingleAwake">
+            <summary>
+            Awake component.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuTrigger.Update">
+            <summary>
+            Update component.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuTrigger.OnMenuTriggerEnter(UnityEngine.RaycastHit)">
+            <summary>
+            On context menu trigger enter.
+            </summary>
+            <param name="hitInfo">Raycast hit info of target.</param>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuTrigger.OnMenuTriggerExit">
+            <summary>
+            On context menu trigger exit.
+            </summary>
+        </member>
+        <member name="T:MGS.ContextMenu.IContextMenuFormHandler">
+            <summary>
+            Interface for context menu form handler.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.IContextMenuFormHandler.OnMenuItemClick(System.String)">
+            <summary>
+            On context menu item click.
+            </summary>
+            <param name="tag">Tag of menu item.</param>
+        </member>
+        <member name="T:MGS.ContextMenu.IContextMenuForm">
+            <summary>
+            Interface of custom context menu form.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.IContextMenuForm.Margin">
+            <summary>
+            Margin of menu form base on screen.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.IContextMenuForm.Handler">
+            <summary>
+            Handler of contex menu form.
+            </summary>
+        </member>
+        <member name="T:MGS.ContextMenu.IContextMenuItem">
+            <summary>
+            Interface for context menu item.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.IContextMenuItem.Tag">
+            <summary>
+            Tag of menu item.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.IContextMenuItem.OnClick">
+            <summary>
+            Event on menu item click.
+            </summary>
+        </member>
+        <member name="T:MGS.ContextMenu.IContextMenuTrigger">
+            <summary>
+            Interface for context menu trigger.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.IContextMenuTrigger.RayCamera">
+            <summary>
+            Camera to raycast.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.IContextMenuTrigger.LayerMask">
+            <summary>
+             LayerMask of raycast.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.IContextMenuTrigger.MaxDistance">
+            <summary>
+            Max distance of raycast.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.IContextMenuTrigger.Handler">
+            <summary>
+            Handler of contex menu trigger.
+            </summary>
+        </member>
+        <member name="T:MGS.ContextMenu.IContextMenuTriggerHandler">
+            <summary>
+            Interface for context menu trigger handler.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.IContextMenuTriggerHandler.OnMenuTriggerEnter(UnityEngine.RaycastHit)">
+            <summary>
+            On context menu trigger enter.
+            </summary>
+            <param name="hitInfo">Raycast hit info of target.</param>
+        </member>
+        <member name="M:MGS.ContextMenu.IContextMenuTriggerHandler.OnMenuTriggerExit">
+            <summary>
+            On context menu trigger exit.
+            </summary>
+        </member>
+    </members>
+</doc>
