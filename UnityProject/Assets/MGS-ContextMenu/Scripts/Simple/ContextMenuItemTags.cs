@@ -15,14 +15,16 @@ namespace MGS.ContextMenu
     public static class ContextMenuItemTags
     {
         //Position.
+        public const string POS_PREFIX = "Position";
         public const string ADD_POS_X = "PositionX+";
         public const string REDUCE_POS_X = "PositionX-";
         public const string ADD_POS_Y = "PositionY+";
         public const string REDUCE_POS_Y = "PositionY-";
 
         //Color.
-        public const string SET_COLOR_BLUE = "BlueColor";
-        public const string SET_COLOR_GREEN = "GreenColor";
-        public const string SET_COLOR_RED = "RedColor";
+        public const string COLOR_PREFIX = "Color";
+        public const string SET_COLOR_BLUE = "ColorBlue";
+        public const string SET_COLOR_GREEN = "ColorGreen";
+        public const string SET_COLOR_RED = "ColorRed";
     }
 }

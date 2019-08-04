@@ -11,7 +11,6 @@
  *************************************************************************/
 
 using MGS.UIForm;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace MGS.ContextMenu
@@ -20,42 +19,44 @@ namespace MGS.ContextMenu
     public class ContextMenuHandlerExample1 : ContextMenuTriggerHandler, IContextMenuFormHandler
     {
         #region Field and Property
-        protected Transform target;
+        private readonly IContextMenuElementData[] menuElementDatas = new IContextMenuElementData[]
+        {
+            new ContextMenuItemData("Blue Color", ContextMenuItemTags.SET_COLOR_BLUE),
+            new ContextMenuItemData("Green Color", ContextMenuItemTags.SET_COLOR_GREEN),
+            new ContextMenuItemData("Red Color", ContextMenuItemTags.SET_COLOR_RED),
+        };
+
+        private IContextMenuForm menuForm;
+        private Transform target;
         #endregion
 
-        #region Protected Method
-        protected virtual void Start()
+        #region Private Method
+        private void Start()
         {
-            //Define items of menu.
-            var formData = new ContextMenuFormData(Vector2.zero, new List<ContextMenuItemData>()
-            {
-                new ContextMenuItemData("Blue Color", ContextMenuItemTags.SET_COLOR_BLUE),
-                new ContextMenuItemData("Green Color", ContextMenuItemTags.SET_COLOR_GREEN),
-                new ContextMenuItemData("Red Color", ContextMenuItemTags.SET_COLOR_RED),
-            });
-
             //Open menu by UIFormManager to create form instance.
-            currentMenuForm = UIFormManager.Instance.OpenForm<ContextMenuForm>(formData);
+            var formData = new ContextMenuFormData(Vector2.zero, menuElementDatas);
+            menuForm = UIFormManager.Instance.OpenForm<ContextMenuForm>(formData);
 
             //Close it to hide the form instance.
-            currentMenuForm.Close();
+            menuForm.Close();
 
             //Set the handler of menu form so that we can received the event on menu item click.
-            currentMenuForm.Handler = this;
+            menuForm.Handler = this;
         }
         #endregion
 
         #region Public Method
-        public override void OnMenuTriggerEnter(RaycastHit hitInfo)
+        public override IContextMenuForm OnMenuTriggerEnter(RaycastHit hitInfo)
         {
             //Use hitInfo to decide open menu form or not if need.
             //Open menu form for any object just for example.
 
             target = hitInfo.transform;
-            currentMenuForm.Open(Input.mousePosition);
+            menuForm.Open(Input.mousePosition);
+            return menuForm;
         }
 
-        public virtual void OnMenuItemClick(string tag)
+        public void OnMenuItemClick(string tag)
         {
             var newColor = Color.white;
             switch (tag)

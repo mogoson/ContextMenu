@@ -436,6 +436,11 @@
             Base class for mono UI.
             </summary>
         </member>
+        <member name="P:MGS.UCommon.UI.MonoUI.rectTransform">
+            <summary>
+            RectTransform component of UI.
+            </summary>
+        </member>
         <member name="P:MGS.UCommon.UI.MonoUI.IsOpen">
             <summary>
             UI is open?
@@ -456,11 +461,6 @@
             Event on close UI.
             </summary>
         </member>
-        <member name="P:MGS.UCommon.UI.MonoUI.rectTransform">
-            <summary>
-            RectTransform component of UI.
-            </summary>
-        </member>
         <member name="M:MGS.UCommon.UI.MonoUI.Awake">
             <summary>
             Awake UI.
@@ -469,6 +469,11 @@
         <member name="M:MGS.UCommon.UI.MonoUI.Initialize">
             <summary>
             Initialize UI.
+            </summary>
+        </member>
+        <member name="M:MGS.UCommon.UI.MonoUI.OnDestroy">
+            <summary>
+            On destroy UI.
             </summary>
         </member>
         <member name="M:MGS.UCommon.UI.MonoUI.Open(System.Object)">
@@ -519,6 +524,11 @@
         <member name="T:MGS.UCommon.UI.IMonoUI">
             <summary>
             Interface for mono UI.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.UI.IMonoUI.rectTransform">
+            <summary>
+            RectTransform component of UI.
             </summary>
         </member>
         <member name="P:MGS.UCommon.UI.IMonoUI.IsOpen">
@@ -1629,6 +1639,18 @@
             <param name="a">Color a.</param>
             <param name="b">Color b.</param>
             <returns>Blended color.</returns>
+        </member>
+        <member name="T:MGS.UCommon.Utility.EventSystemUtility">
+            <summary>
+            Utility for EventSystem.
+            </summary>
+        </member>
+        <member name="M:MGS.UCommon.Utility.EventSystemUtility.CheckPointerOverGameObject(UnityEngine.GameObject)">
+            <summary>
+            Check mouse pointer is over target gameobject?
+            </summary>
+            <param name="target">Target gameobject.</param>
+            <returns>Pointer is over target gameobject?</returns>
         </member>
         <member name="T:MGS.UCommon.Utility.MeshUtility">
             <summary>

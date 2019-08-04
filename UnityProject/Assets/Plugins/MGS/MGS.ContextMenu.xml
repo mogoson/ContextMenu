@@ -4,6 +4,17 @@
         <name>MGS.ContextMenu</name>
     </assembly>
     <members>
+        <member name="T:MGS.ContextMenu.ContextMenuElement">
+            <summary>
+            Element of context menu.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuElement.SetSiblingIndex(System.Int32)">
+            <summary>
+            Sets the sibling index of menu element.
+            </summary>
+            <param name="index">Index to set.</param>
+        </member>
         <member name="T:MGS.ContextMenu.ContextMenuObject">
             <summary>
             Context menu support object.
@@ -20,21 +31,18 @@
             Handler of contex menu trigger.
             </summary>
         </member>
-        <member name="F:MGS.ContextMenu.ContextMenuTriggerHandler.currentMenuForm">
-            <summary>
-            Current menu form.
-            </summary>
-        </member>
         <member name="M:MGS.ContextMenu.ContextMenuTriggerHandler.OnMenuTriggerEnter(UnityEngine.RaycastHit)">
             <summary>
             On context menu trigger enter.
             </summary>
             <param name="hitInfo">Raycast hit info of target.</param>
+            <returns>Instance of context menu form.</returns>
         </member>
-        <member name="M:MGS.ContextMenu.ContextMenuTriggerHandler.OnMenuTriggerExit">
+        <member name="M:MGS.ContextMenu.ContextMenuTriggerHandler.OnMenuTriggerExit(MGS.ContextMenu.IContextMenuForm)">
             <summary>
             On context menu trigger exit.
             </summary>
+            <param name="menuForm">Instance of context menu form.</param>
         </member>
         <member name="T:MGS.ContextMenu.ContextMenuItem">
             <summary>
@@ -87,6 +95,39 @@
             </summary>
             <param name="data">Data of context menu item, type is ContextMenuItemData.</param>
         </member>
+        <member name="T:MGS.ContextMenu.ContextMenuItemData">
+            <summary>
+            Data of context menu item.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.ContextMenuItemData.ElementType">
+            <summary>
+            Type of context menu element.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuItemData.name">
+            <summary>
+            Name of menu item.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuItemData.tag">
+            <summary>
+            Tag of menu item.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuItemData.interactable">
+            <summary>
+            Menu item is interactable?
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuItemData.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="name">Name of menu item.</param>
+            <param name="tag">Tag of menu item.</param>
+            <param name="interactable">Menu item is interactable?</param>
+        </member>
         <member name="T:MGS.ContextMenu.ContextMenuForm">
             <summary>
             Context menu form.
@@ -117,9 +158,24 @@
             Handler of contex menu form.
             </summary>
         </member>
+        <member name="P:MGS.ContextMenu.ContextMenuForm.ItemPrefab">
+            <summary>
+            Prefab of menu item to create clone.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.ContextMenuForm.SeparatorPrefab">
+            <summary>
+            Prefab of menu separator to create clone.
+            </summary>
+        </member>
         <member name="F:MGS.ContextMenu.ContextMenuForm.items">
             <summary>
             List of context menu items.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuForm.separators">
+            <summary>
+            List of context menu separators.
             </summary>
         </member>
         <member name="M:MGS.ContextMenu.ContextMenuForm.Initialize">
@@ -133,11 +189,37 @@
             </summary>
             <param name="tag">Tag of menu item.</param>
         </member>
-        <member name="M:MGS.ContextMenu.ContextMenuForm.RefreshItems(System.Collections.Generic.ICollection{MGS.ContextMenu.ContextMenuItemData})">
+        <member name="M:MGS.ContextMenu.ContextMenuForm.RefreshElements(System.Collections.Generic.IEnumerable{MGS.ContextMenu.IContextMenuElementData})">
             <summary>
-            Refresh items of menu base on item datas.
+            Refresh the elements of menu base on element datas.
             </summary>
-            <param name="itemDatas">Data of menu items.</param>
+            <param name="elementDatas">Data of menu elements.</param>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuForm.CreateItem">
+            <summary>
+            Create menu item.
+            </summary>
+            <returns>New menu item.</returns>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuForm.CreateSeparator">
+            <summary>
+            Create menu separator.
+            </summary>
+            <returns>New menu separator.</returns>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuForm.HideItems(System.Int32,System.Int32)">
+            <summary>
+            Hide menu items.
+            </summary>
+            <param name="index">Start index.</param>
+            <param name="count">Hide count.</param>
+        </member>
+        <member name="M:MGS.ContextMenu.ContextMenuForm.HideSeparators(System.Int32,System.Int32)">
+            <summary>
+            Hide menu separators.
+            </summary>
+            <param name="index">Start index.</param>
+            <param name="count">Hide count.</param>
         </member>
         <member name="M:MGS.ContextMenu.ContextMenuForm.EnableItems">
             <summary>
@@ -178,7 +260,7 @@
             Screen position to display menu form.
             </summary>
         </member>
-        <member name="F:MGS.ContextMenu.ContextMenuFormInfo.disables">
+        <member name="F:MGS.ContextMenu.ContextMenuFormInfo.disableItems">
             <summary>
             Tags of disable menu items.
             </summary>
@@ -188,7 +270,7 @@
             Constructor.
             </summary>
             <param name="position">Screen position to display menu form.</param>
-            <param name="disables">Tags of disable menu items.</param>
+            <param name="disableItems">Tags of disable menu items.</param>
         </member>
         <member name="T:MGS.ContextMenu.ContextMenuFormData">
             <summary>
@@ -200,45 +282,38 @@
             Screen position to display menu form.
             </summary>
         </member>
-        <member name="F:MGS.ContextMenu.ContextMenuFormData.items">
+        <member name="F:MGS.ContextMenu.ContextMenuFormData.elementDatas">
             <summary>
-            Data of menu items.
+            Data of menu elements.
             </summary>
         </member>
-        <member name="M:MGS.ContextMenu.ContextMenuFormData.#ctor(UnityEngine.Vector2,System.Collections.Generic.ICollection{MGS.ContextMenu.ContextMenuItemData})">
+        <member name="M:MGS.ContextMenu.ContextMenuFormData.#ctor(UnityEngine.Vector2,System.Collections.Generic.IEnumerable{MGS.ContextMenu.IContextMenuElementData})">
             <summary>
             Constructor.
             </summary>
             <param name="position">Screen position to display menu form.</param>
-            <param name="items">Data of menu items.</param>
+            <param name="elementDatas">Data of menu elements.</param>
         </member>
-        <member name="T:MGS.ContextMenu.ContextMenuItemData">
+        <member name="T:MGS.ContextMenu.ContextMenuSeparator">
             <summary>
-            Data of context menu item.
+            Separator of context menu.
             </summary>
         </member>
-        <member name="F:MGS.ContextMenu.ContextMenuItemData.name">
+        <member name="M:MGS.ContextMenu.ContextMenuSeparator.Refresh(System.Object)">
             <summary>
-            Name of menu item.
+            Refresh menu separator.
+            </summary>
+            <param name="data">Data of context menu separator.</param>
+        </member>
+        <member name="T:MGS.ContextMenu.ContextMenuSeparatorData">
+            <summary>
+            Data of context menu separator.
             </summary>
         </member>
-        <member name="F:MGS.ContextMenu.ContextMenuItemData.tag">
+        <member name="P:MGS.ContextMenu.ContextMenuSeparatorData.ElementType">
             <summary>
-            Tag of menu item.
+            Type of context menu element.
             </summary>
-        </member>
-        <member name="F:MGS.ContextMenu.ContextMenuItemData.interactable">
-            <summary>
-            Menu item is interactable?
-            </summary>
-        </member>
-        <member name="M:MGS.ContextMenu.ContextMenuItemData.#ctor(System.String,System.String,System.Boolean)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="name">Name of menu item.</param>
-            <param name="tag">Tag of menu item.</param>
-            <param name="interactable">Menu item is interactable?</param>
         </member>
         <member name="T:MGS.ContextMenu.ContextMenuTrigger">
             <summary>
@@ -280,6 +355,11 @@
             Handler of contex menu trigger.
             </summary>
         </member>
+        <member name="F:MGS.ContextMenu.ContextMenuTrigger.menuForm">
+            <summary>
+            Context menu form of trigger.
+            </summary>
+        </member>
         <member name="M:MGS.ContextMenu.ContextMenuTrigger.SingleAwake">
             <summary>
             Awake component.
@@ -299,6 +379,43 @@
         <member name="M:MGS.ContextMenu.ContextMenuTrigger.OnMenuTriggerExit">
             <summary>
             On context menu trigger exit.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MGS.ContextMenu.IContextMenuElement">
+            <summary>
+            Interface for context menu element.
+            </summary>
+        </member>
+        <member name="M:MGS.ContextMenu.IContextMenuElement.SetSiblingIndex(System.Int32)">
+            <summary>
+            Sets the sibling index of menu element.
+            </summary>
+            <param name="index">Index to set.</param>
+        </member>
+        <member name="T:MGS.ContextMenu.IContextMenuElementData">
+            <summary>
+            Interface for context menu element data.
+            </summary>
+        </member>
+        <member name="P:MGS.ContextMenu.IContextMenuElementData.ElementType">
+            <summary>
+            Type of context menu element.
+            </summary>
+        </member>
+        <member name="T:MGS.ContextMenu.ContextMenuElementType">
+            <summary>
+            Type of context menu element.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuElementType.ContextMenuItem">
+            <summary>
+            Context menu item element.
+            </summary>
+        </member>
+        <member name="F:MGS.ContextMenu.ContextMenuElementType.ContextMenuSeparator">
+            <summary>
+            Context menu separator element.
             </summary>
         </member>
         <member name="T:MGS.ContextMenu.IContextMenuFormHandler">
@@ -342,6 +459,11 @@
             Event on menu item click.
             </summary>
         </member>
+        <member name="T:MGS.ContextMenu.IContextMenuSeparator">
+            <summary>
+            Interface for context menu separator.
+            </summary>
+        </member>
         <member name="T:MGS.ContextMenu.IContextMenuTrigger">
             <summary>
             Interface for context menu trigger.
@@ -377,11 +499,13 @@
             On context menu trigger enter.
             </summary>
             <param name="hitInfo">Raycast hit info of target.</param>
+            <returns>Instance of context menu form.</returns>
         </member>
-        <member name="M:MGS.ContextMenu.IContextMenuTriggerHandler.OnMenuTriggerExit">
+        <member name="M:MGS.ContextMenu.IContextMenuTriggerHandler.OnMenuTriggerExit(MGS.ContextMenu.IContextMenuForm)">
             <summary>
             On context menu trigger exit.
             </summary>
+            <param name="menuForm">Instance of context menu form.</param>
         </member>
     </members>
 </doc>

@@ -20,56 +20,61 @@ namespace MGS.ContextMenu
     public class ContextMenuHandlerExample : ContextMenuTriggerHandler, IContextMenuFormHandler
     {
         #region Field and Property
-        protected Transform target;
-        protected int maxOffset = 3;
+        private IContextMenuForm menuForm;
+        private Transform target;
+        private int maxOffset = 3;
         #endregion
 
-        #region Protected Method
-        protected virtual void Start()
+        #region Private Method
+        private void Start()
         {
-            //ContextMenuForm is already built complete in editor.
-            //Just open it by UIFormManager to create form instance.
-            currentMenuForm = UIFormManager.Instance.OpenForm<ContextMenuForm>();
+            //Open menu by UIFormManager to create form instance.
+            menuForm = UIFormManager.Instance.OpenForm<ContextMenuForm>();
 
             //Close it to hide the form instance.
-            currentMenuForm.Close();
+            menuForm.Close();
 
             //Set the handler of menu form so that we can received the event on menu item click.
-            currentMenuForm.Handler = this;
+            menuForm.Handler = this;
+        }
+
+        private IEnumerable<string> CheckDisableMenuItems()
+        {
+            var disableItems = new List<string>();
+            if (target.localPosition.x >= maxOffset)
+            {
+                disableItems.Add(ContextMenuItemTags.ADD_POS_X);
+            }
+            else if (target.localPosition.x <= -maxOffset)
+            {
+                disableItems.Add(ContextMenuItemTags.REDUCE_POS_X);
+            }
+
+            if (target.localPosition.y >= maxOffset)
+            {
+                disableItems.Add(ContextMenuItemTags.ADD_POS_Y);
+            }
+            else if (target.localPosition.y <= -maxOffset)
+            {
+                disableItems.Add(ContextMenuItemTags.REDUCE_POS_Y);
+            }
+            return disableItems;
         }
         #endregion
 
         #region Public Method
-        public override void OnMenuTriggerEnter(RaycastHit hitInfo)
+        public override IContextMenuForm OnMenuTriggerEnter(RaycastHit hitInfo)
         {
             //Use hitInfo to decide open menu form or not if need.
             //Open menu form for any object just for example.
 
             target = hitInfo.transform;
-            var disables = new List<string>();
-            if (target.localPosition.x >= maxOffset)
-            {
-                disables.Add(ContextMenuItemTags.ADD_POS_X);
-            }
-            else if (target.localPosition.x <= -maxOffset)
-            {
-                disables.Add(ContextMenuItemTags.REDUCE_POS_X);
-            }
-
-            if (target.localPosition.y >= maxOffset)
-            {
-                disables.Add(ContextMenuItemTags.ADD_POS_Y);
-            }
-            else if (target.localPosition.y <= -maxOffset)
-            {
-                disables.Add(ContextMenuItemTags.REDUCE_POS_Y);
-            }
-
-            var formInfo = new ContextMenuFormInfo(Input.mousePosition, disables);
-            currentMenuForm.Open(formInfo);
+            var formInfo = new ContextMenuFormInfo(Input.mousePosition, CheckDisableMenuItems());
+            menuForm.Open(formInfo);
+            return menuForm;
         }
 
-        public virtual void OnMenuItemClick(string tag)
+        public void OnMenuItemClick(string tag)
         {
             var offset = Vector3.zero;
             switch (tag)
