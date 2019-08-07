@@ -33,20 +33,14 @@ namespace MGS.ContextMenu
         #endregion
 
         #region Public Method
-        public override void Refresh(object data)
+        public override bool Refresh(object data)
         {
-            base.Refresh(data);
-
-            //if(base.Refresh(data))
-            //{
-
-            //}
-
             if (data is ContextMenuFormExtendData)
             {
                 var formData = data as ContextMenuFormExtendData;
                 bgImage.color = formData.bgColor;
             }
+            return base.Refresh(data);
         }
         #endregion
     }
@@ -58,7 +52,8 @@ namespace MGS.ContextMenu
         #endregion
 
         #region Public Method
-        public ContextMenuFormExtendData(Color bgColor, Vector2 position, IEnumerable<IContextMenuElementData> elementDatas) : base(position, elementDatas)
+        public ContextMenuFormExtendData(Color bgColor, Vector2 position, IEnumerable<IContextMenuElementData> elementDatas)
+            : base(position, elementDatas)
         {
             this.bgColor = bgColor;
         }

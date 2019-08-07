@@ -487,6 +487,7 @@
             Refresh UI.
             </summary>
             <param name="data">Data for UI.</param>
+            <returns>Succeed?</returns>
         </member>
         <member name="M:MGS.UCommon.UI.MonoUI.Close(System.Boolean)">
             <summary>
@@ -562,6 +563,7 @@
             Refresh UI.
             </summary>
             <param name="data">Data for UI.</param>
+            <returns>Succeed?</returns>
         </member>
         <member name="M:MGS.UCommon.UI.IMonoUI.Close(System.Boolean)">
             <summary>

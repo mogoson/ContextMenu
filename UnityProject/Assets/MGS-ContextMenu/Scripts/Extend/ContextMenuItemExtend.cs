@@ -32,15 +32,8 @@ namespace MGS.ContextMenu
         #endregion
 
         #region Public Method
-        public override void Refresh(object data)
+        public override bool Refresh(object data)
         {
-            base.Refresh(data);
-
-            //if(base.Refresh(data))
-            //{
-
-            //}
-
             if (data is ContextMenuItemExtendData)
             {
                 var itemData = data as ContextMenuItemExtendData;
@@ -53,6 +46,7 @@ namespace MGS.ContextMenu
                 itemText.color = itemData.textColor;
                 layoutElement.preferredHeight = itemData.height;
             }
+            return base.Refresh(data);
         }
         #endregion
     }

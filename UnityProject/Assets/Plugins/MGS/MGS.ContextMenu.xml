@@ -94,6 +94,7 @@
             Refresh menu item.
             </summary>
             <param name="data">Data of context menu item, type is ContextMenuItemData.</param>
+            <returns>Succeed?</returns>
         </member>
         <member name="T:MGS.ContextMenu.ContextMenuItemData">
             <summary>
@@ -243,6 +244,7 @@
             Refresh context menu form.
             </summary>
             <param name="data">Data for context menu form, type is Vector2 or Vector3 or ContextMenuFormInfo or ContextMenuFormData.</param>
+            <returns>Succeed?</returns>
         </member>
         <member name="M:MGS.ContextMenu.ContextMenuForm.Close(System.Boolean)">
             <summary>
@@ -304,6 +306,7 @@
             Refresh menu separator.
             </summary>
             <param name="data">Data of context menu separator.</param>
+            <returns>Succeed?</returns>
         </member>
         <member name="T:MGS.ContextMenu.ContextMenuSeparatorData">
             <summary>

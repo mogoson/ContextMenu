@@ -34,21 +34,15 @@ namespace MGS.ContextMenu
         #endregion
 
         #region Public Method
-        public override void Refresh(object data)
+        public override bool Refresh(object data)
         {
-            base.Refresh(data);
-
-            //if(base.Refresh(data))
-            //{
-
-            //}
-
             if (data is ContextMenuSeparatorExtendData)
             {
                 var itemData = data as ContextMenuSeparatorExtendData;
                 bgImage.color = itemData.bgColor;
                 layoutElement.preferredHeight = itemData.height;
             }
+            return base.Refresh(data);
         }
         #endregion
     }
