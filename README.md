@@ -34,7 +34,7 @@
 ## Preview
 - Context Menu Example
 
-![Context Menu Example](./Attachments/README_Image/ContextMenuExample.gif)
+![Context Menu Example](./Attachment/README_Image/ContextMenuExample.gif)
 
 ## Contact
 - If you have any questions, feel free to contact me at mogoson@outlook.com.
