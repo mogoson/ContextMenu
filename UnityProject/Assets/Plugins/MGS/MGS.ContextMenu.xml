@@ -363,7 +363,7 @@
             Context menu form of trigger.
             </summary>
         </member>
-        <member name="M:MGS.ContextMenu.ContextMenuTrigger.SingleAwake">
+        <member name="M:MGS.ContextMenu.ContextMenuTrigger.Awake">
             <summary>
             Awake component.
             </summary>
