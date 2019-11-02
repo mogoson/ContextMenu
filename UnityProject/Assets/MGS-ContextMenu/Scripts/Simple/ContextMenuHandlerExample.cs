@@ -69,8 +69,12 @@ namespace MGS.ContextMenu
             //Open menu form for any object just for example.
 
             target = hitInfo.transform;
-            var formInfo = new ContextMenuFormInfo(Input.mousePosition, CheckDisableMenuItems());
-            menuForm.Open(formInfo);
+
+            var disableItems = CheckDisableMenuItems();
+            menuForm.DisableItems(disableItems);
+
+            menuForm.Open();
+            menuForm.SetPosition(Input.mousePosition);
             return menuForm;
         }
 

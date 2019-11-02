@@ -10,7 +10,6 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,40 +21,20 @@ namespace MGS.ContextMenu
     {
         #region Field and Property
         private Image bgImage;
+
+        public Color BgColor
+        {
+            set { bgImage.color = value; }
+            get { return bgImage.color; }
+        }
         #endregion
 
         #region Protected Method
-        protected override void Initialize()
+        protected override void Awake()
         {
-            base.Initialize();
+            base.Awake();
+
             bgImage = GetComponent<Image>();
-        }
-        #endregion
-
-        #region Public Method
-        public override bool Refresh(object data)
-        {
-            if (data is ContextMenuFormExtendData)
-            {
-                var formData = data as ContextMenuFormExtendData;
-                bgImage.color = formData.bgColor;
-            }
-            return base.Refresh(data);
-        }
-        #endregion
-    }
-
-    public class ContextMenuFormExtendData : ContextMenuFormData
-    {
-        #region Field and Property
-        public Color bgColor;
-        #endregion
-
-        #region Public Method
-        public ContextMenuFormExtendData(Color bgColor, Vector2 position, IEnumerable<IContextMenuElementData> elementDatas)
-            : base(position, elementDatas)
-        {
-            this.bgColor = bgColor;
         }
         #endregion
     }

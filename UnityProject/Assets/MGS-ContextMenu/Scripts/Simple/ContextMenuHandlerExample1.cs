@@ -19,7 +19,7 @@ namespace MGS.ContextMenu
     public class ContextMenuHandlerExample1 : ContextMenuTriggerHandler, IContextMenuFormHandler
     {
         #region Field and Property
-        private readonly IContextMenuElementData[] menuElementDatas = new IContextMenuElementData[]
+        private readonly ContextMenuElementData[] menuElementDatas = new ContextMenuElementData[]
         {
             new ContextMenuItemData("Blue Color", ContextMenuItemTags.SET_COLOR_BLUE),
             new ContextMenuItemData("Green Color", ContextMenuItemTags.SET_COLOR_GREEN),
@@ -34,8 +34,8 @@ namespace MGS.ContextMenu
         private void Start()
         {
             //Open menu by UIFormManager to create form instance.
-            var formData = new ContextMenuFormData(Vector2.zero, menuElementDatas);
-            menuForm = UIFormManager.Instance.OpenForm<ContextMenuForm>(formData);
+            menuForm = UIFormManager.Instance.OpenForm<ContextMenuForm>();
+            menuForm.RefreshElements(menuElementDatas);
 
             //Close it to hide the form instance.
             menuForm.Close();
@@ -52,7 +52,8 @@ namespace MGS.ContextMenu
             //Open menu form for any object just for example.
 
             target = hitInfo.transform;
-            menuForm.Open(Input.mousePosition);
+            menuForm.SetPosition(Input.mousePosition);
+            menuForm.Open();
             return menuForm;
         }
 

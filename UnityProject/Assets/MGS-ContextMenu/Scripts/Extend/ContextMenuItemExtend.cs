@@ -24,15 +24,16 @@ namespace MGS.ContextMenu
         #endregion
 
         #region Protected Method
-        protected override void Initialize()
+        protected override void Awake()
         {
-            base.Initialize();
+            base.Awake();
+
             layoutElement = GetComponent<LayoutElement>();
         }
         #endregion
 
         #region Public Method
-        public override bool Refresh(object data)
+        public override bool Refresh(ContextMenuElementData data)
         {
             if (data is ContextMenuItemExtendData)
             {

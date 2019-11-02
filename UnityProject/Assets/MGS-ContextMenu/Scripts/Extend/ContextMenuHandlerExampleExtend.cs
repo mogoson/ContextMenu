@@ -19,7 +19,7 @@ namespace MGS.ContextMenu
     public class ContextMenuHandlerExampleExtend : ContextMenuTriggerHandler
     {
         #region Field and Property
-        private readonly IContextMenuElementData[] menuElementDatas = new IContextMenuElementData[]
+        private readonly ContextMenuElementData[] menuElementDatas = new ContextMenuElementData[]
         {
             new ContextMenuItemExtendData(Color.black,Color.blue,Color.white,30,"PositionX+", ContextMenuItemTags.ADD_POS_X),
             new ContextMenuItemExtendData(Color.black,Color.blue,Color.white,30,"PositionX-", ContextMenuItemTags.REDUCE_POS_X),
@@ -39,8 +39,11 @@ namespace MGS.ContextMenu
         private void Start()
         {
             //Open menu by UIFormManager to create form instance.
-            var formData = new ContextMenuFormExtendData(Color.black, Vector2.zero, menuElementDatas);
-            menuForm = UIFormManager.Instance.OpenForm<ContextMenuFormExtend>(formData);
+            var menuFormEx = UIFormManager.Instance.OpenForm<ContextMenuFormExtend>();
+            menuFormEx.BgColor = Color.black;
+
+            menuForm = menuFormEx;
+            menuForm.RefreshElements(menuElementDatas);
 
             //Close it to hide the form instance.
             menuForm.Close();
@@ -57,8 +60,10 @@ namespace MGS.ContextMenu
             }
 
             var disableItems = menuObject.CheckDisableMenuItems();
-            var formInfo = new ContextMenuFormInfo(Input.mousePosition, disableItems);
-            menuForm.Open(formInfo);
+            menuForm.DisableItems(disableItems);
+
+            menuForm.Open();
+            menuForm.SetPosition(Input.mousePosition);
 
             //Set the handler of menu form so that we can received the event on menu item click.
             menuForm.Handler = menuObject;
